@@ -1,0 +1,53 @@
+{
+  "name": "star-wars",
+  "version": "1.0.0",
+  "description": "Just some interface to pay with star wars API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/FrancoSirena/star-wars"
+  },
+  "author": "Franco Sirena",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "async": "^2.4.1",
+    "axios": "^0.16.2",
+    "babelfy": "^1.1.0",
+    "babelify": "^7.3.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "bower": "^1.8.0",
+    "browserfy": "^1.0.0",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-if": "^2.0.2",
+    "gulp-less": "^3.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "history": "^1.13.0",
+    "mongoose": "^4.10.5",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "underscore": "^1.8.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  }
+}
