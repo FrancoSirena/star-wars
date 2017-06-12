@@ -1,8 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {IndexRoute,BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-import Home from './components/Home';
+import FilmsList from './components/FilmsList';
+import Film from './components/Film';
 
 class App extends React.Component { 
 
@@ -16,7 +17,8 @@ class App extends React.Component {
         </div>
         <div className="body">
             <img src="/imgs/cover.jpg" />
-            <Route path="/" component={Home}/>
+            <Route exact path="/" component={FilmsList}/>
+            <Route path="/films/:id" component={Film} />
         </div>
       </div>
     </Router>   

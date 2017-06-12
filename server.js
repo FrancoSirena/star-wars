@@ -30,9 +30,20 @@ app.get('/api/films', function(req, res, next) {
         });
 });
 
+app.post('/api/film/', function(req, res, next) {
+    var id = req.body.id;
+    axios.get(urlSwapi.concat('/api/films/'+id))
+        .then(function(data) {
+            
+            res.send(data.data);
+        }).catch(function(err) {
+            console.log(err);
+        });
 
-app.get('/', function(req, res) {
-    res.render('index.html');
+});
+
+app.use(function(req, res) {
+    res.sendFile(path.join(__dirname+'/views/index.html'));
 });
 
 mongoose.Promise = require('bluebird');

@@ -1,9 +1,9 @@
 import alt from '../alt';
-import HomeActions from '../actions/HomeActions';
+import FilmsListActions from '../actions/FilmsListActions';
 
-class HomeStore{
+class FilmsListStore{
     constructor() {
-        this.bindActions(HomeActions);
+        this.bindActions(FilmsListActions);
         this.films = [];
         this.isLoading = true;
     }
@@ -18,4 +18,4 @@ class HomeStore{
 
 }
 
-export default alt.createStore(HomeStore);
+export default alt.createStore(FilmsListStore);

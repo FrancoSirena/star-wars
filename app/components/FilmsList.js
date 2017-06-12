@@ -1,19 +1,19 @@
 import React from 'react';
-import HomeActions  from '../actions/HomeActions';
-import HomeStore    from '../stores/HomeStore';
+import FilmsListActions  from '../actions/FilmsListActions';
+import FilmsListStore    from '../stores/FilmsListStore';
 
-export default class Home extends React.Component {
+export default class FilmsList extends React.Component {
     constructor(props){
         super(props);
-        this.state = HomeStore.getState();
+        this.state = FilmsListStore.getState();
         this.onChange = this.onChange.bind(this);
     }
     componentDidMount() {
-        HomeStore.listen(this.onChange);
-        HomeActions.getAllFilms();
+        FilmsListStore.listen(this.onChange);
+        FilmsListActions.getAllFilms();
     }
     componentWillUnmount() {
-        HomeStore.unlisten(this.onChange);
+        FilmsListStore.unlisten(this.onChange);
     }
     onChange(state){
         this.setState(state);
@@ -27,7 +27,7 @@ export default class Home extends React.Component {
                         <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
                     </div>
                     <div className="content">
-                        <a className="header">{item.title}</a>
+                        <a className="header" href={'/films/'+item.episode_id}>{item.title}</a>
                         <div className="meta">
                             <span className="date">{item.release_date}</span>
                         </div>

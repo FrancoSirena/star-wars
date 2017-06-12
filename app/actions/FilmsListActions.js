@@ -1,6 +1,6 @@
 import alt from '../alt';
 
-class HomeActions {
+class FilmsListActions {
     constructor() {
         this.generateActions(
             'getAllFilmsSuccess',
@@ -18,4 +18,4 @@ class HomeActions {
     }
 }
 
-export default alt.createActions(HomeActions);
+export default alt.createActions(FilmsListActions);
