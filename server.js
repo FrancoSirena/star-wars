@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 var config = require('./config');
+var async = require('async');
 
 app.set('port', process.env.PORT || 2999);
 app.use(bodyParser.json());
@@ -32,14 +33,35 @@ app.get('/api/films', function(req, res, next) {
 
 app.post('/api/film/', function(req, res, next) {
     var id = req.body.id;
-    axios.get(urlSwapi.concat('/api/films/'+id))
-        .then(function(data) {
-            
-            res.send(data.data);
-        }).catch(function(err) {
-            console.log(err);
-        });
-
+    var films = [];
+    var characters = [];
+    var planets = [];
+    async.waterfall([
+        function(callback) {
+            axios.get(urlSwapi.concat('/api/films/'+id))
+                .then(function(data) {
+                    callback(data.data);
+                }).catch(function(err) {
+                    console.log(err);
+                });
+        }, 
+        function(result, callback) {
+             callback(null, result);
+            // async.every(result.characters, function(item, callback) {
+            //     axios.get(item)
+            //         .then(function(data) {
+            //             callback(data.data);
+            //         }).catch(function(err) {
+            //             console.log(err);
+            //         });
+            // }, function(err, results) {
+            //     callback(results);
+            // });
+        }
+    ], function(e, results) {
+        console.log(results);
+    }
+    );  
 });
 
 app.use(function(req, res) {

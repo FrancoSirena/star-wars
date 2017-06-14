@@ -5,6 +5,8 @@ class FilmStore {
   constructor() {
     this.bindActions(FilmActions);
     this.film = "";
+    this.characters = [];
+    this.planets = [];
   }
   onGetFilmByIDSuccess(data) {
     this.film = data;
