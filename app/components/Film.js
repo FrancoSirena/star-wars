@@ -19,26 +19,41 @@ export default class Film extends React.Component {
     this.setState(state);
   }
   render() {
-    let item = this.state.film;
+    let item = this.state.film.data;
+    let charsList = this.state.film.characters.map((char, idx) =>{
+      return <p key={'ch'+idx}> {char.name} </p>
+    });
+    let planetsList = this.state.film.planets.map((planet, idx) => {
+        return <p key={'pl'+idx}> {planet.name} </p>
+    })
     return(
-    <div key={item.episode_id}>
-        <div className="ui large image floatImage">
+    <div key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
+        <div className="ui image column" style={{width: '30%'}}>
             <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
         </div>
-        <div className="content floatContent">
+        <div className="ui column">
             <span className="header">{item.title}</span> <span className="date">{item.release_date}</span>
             <div className="description">
                 {item.opening_crawl}
             </div>
-            <div className="ui styled accordion">
-              <div className="title">
-                <i className="users icon"> </i>
-                Characters
+            <div className="ui two column very relaxed grid">
+              <div className=" column ui accordion">
+                <div key className="active title">
+                  <i className="users icon"> </i>
+                  Characters
+                </div>
+                <div className="active content">
+                  {charsList}
+                </div>
               </div>
-              <div className="content">
-                {this.state.characters.map((item) =>{
-                  return (<p> {item.name} </p> );
-                })}
+              <div className=" column ui accordion">
+                <div key className="active title">
+                  <i className="world icon"> </i>
+                  Planets
+                </div>
+                <div className="active content">
+                  {planetsList}
+                </div>
               </div>
             </div>
         </div>

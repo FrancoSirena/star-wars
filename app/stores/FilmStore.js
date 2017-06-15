@@ -4,9 +4,7 @@ import FilmActions from '../actions/FilmActions';
 class FilmStore {
   constructor() {
     this.bindActions(FilmActions);
-    this.film = "";
-    this.characters = [];
-    this.planets = [];
+    this.film = {data: {}, characters: [], planets: []};
   }
   onGetFilmByIDSuccess(data) {
     this.film = data;

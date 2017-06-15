@@ -21,13 +21,16 @@ export default class FilmsList extends React.Component {
     render() {
         let loadingStyle = { visibility:  this.state.isLoading ? 'visible' : 'hidden' };
         let filmsList = this.state.films.map((item,idx) => {
+                let arr = item.url.split('/');
+                let index = arr.length;
                 return(
                 <div key={item.episode_id} className="ui card">
+                    
                     <div className="image">
                         <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
                     </div>
                     <div className="content">
-                        <a className="header" href={'/films/'+item.episode_id}>{item.title}</a>
+                        <a className="header" href={'/films/'+arr[index-2]}>{item.title}</a>
                         <div className="meta">
                             <span className="date">{item.release_date}</span>
                         </div>
@@ -38,7 +41,7 @@ export default class FilmsList extends React.Component {
                 </div>);
             });
         return (
-        <div className='container'>
+        <div className='container filmList'>
             <div className="ui segment" style={loadingStyle}>
                 <div className="ui active dimmer">
                     <div className="ui small text loader">Loading</div>

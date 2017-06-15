@@ -33,33 +33,57 @@ app.get('/api/films', function(req, res, next) {
 
 app.post('/api/film/', function(req, res, next) {
     var id = req.body.id;
-    var films = [];
-    var characters = [];
-    var planets = [];
+    var returnData = {data: {}, planets: [], characters: []};
     async.waterfall([
         function(callback) {
             axios.get(urlSwapi.concat('/api/films/'+id))
                 .then(function(data) {
-                    callback(data.data);
+                    returnData.data = data.data;
+                    callback(null, data.data);
                 }).catch(function(err) {
-                    console.log(err);
+                    callback(err);
                 });
         }, 
         function(result, callback) {
-             callback(null, result);
-            // async.every(result.characters, function(item, callback) {
-            //     axios.get(item)
-            //         .then(function(data) {
-            //             callback(data.data);
-            //         }).catch(function(err) {
-            //             console.log(err);
-            //         });
-            // }, function(err, results) {
-            //     callback(results);
-            // });
+            async.parallel([function(callbackParalel) {
+                                var characters = [];
+                                async.each(result.characters, function(item, callError) {
+                                    axios.get(item)
+                                        .then(function(data) {
+                                            characters.push(data.data);
+                                            callError();
+                                        }).catch(function(err) {
+                                            callError(err);
+                                        });
+                                        }, function(err) {
+                                            callbackParalel(err, characters);
+                                        })
+                            },  function(callbackParalel){
+                                    var planets = [];
+                                    async.each(result.planets, function(item, callErrorPl) {
+                                        axios.get(item)
+                                            .then(function(data) {
+                                                planets.push(data.data);
+                                                callErrorPl();
+                                            }).catch(function(err) {
+                                                callErrorPl(err);
+                                            });
+                                            }, function(err) {
+                                                callbackParalel(err, planets);
+                                            })
+                            }
+                            ],function(err, results) {
+                                callback(err, results);
+                            }
+            );
         }
     ], function(e, results) {
-        console.log(results);
+        returnData.characters = results[0];
+        returnData.planets = results[1];
+        if (e)
+            res.sendStatus(500).send(e);
+        else
+                res.send(returnData);
     }
     );  
 });

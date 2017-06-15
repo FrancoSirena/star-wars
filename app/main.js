@@ -16,8 +16,8 @@ class App extends React.Component {
             <Link to="/Planets" className="item"> <i className="small world icon"></i> Planets </Link>
         </div>
         <div className="body">
-            <img src="/imgs/cover.jpg" />
             <Route exact path="/" component={FilmsList}/>
+            <Route exact path="/Films" component={FilmsList}/>
             <Route path="/films/:id" component={Film} />
         </div>
       </div>
