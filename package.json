@@ -4,7 +4,7 @@
   "description": "Just some interface to pay with star wars API",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "gulp | node server.js",
     "watch": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
