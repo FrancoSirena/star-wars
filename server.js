@@ -88,10 +88,6 @@ app.post('/api/film/', function(req, res, next) {
     );  
 });
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/views/index.html'));
-});
-
 // mongoose.Promise = require('bluebird');
 // mongoose.connect(config.database);
 // mongoose.connection.on('error', function() {
