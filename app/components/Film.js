@@ -37,21 +37,21 @@ export default class Film extends React.Component {
                 {item.opening_crawl}
             </div>
             <div className="ui two column very relaxed grid">
-              <div className=" column ui accordion">
-                <div key className="active title">
+              <div className="column ui accordion">
+                <div key="characters" className="active title">
                   <i className="users icon"> </i>
                   Characters
                 </div>
-                <div className="active content">
+                <div key="charactersContent" className="active content">
                   {charsList}
                 </div>
               </div>
               <div className=" column ui accordion">
-                <div key className="active title">
+                <div key="planets" className="title">
                   <i className="world icon"> </i>
                   Planets
                 </div>
-                <div className="active content">
+                <div key="planetsContent" className="content">
                   {planetsList}
                 </div>
               </div>
