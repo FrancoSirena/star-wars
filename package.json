@@ -25,6 +25,8 @@
     "alt": "^0.18.6",
     "async": "^2.4.1",
     "axios": "^0.16.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babelfy": "^1.1.0",
     "babelify": "^7.3.0",
     "bluebird": "^3.5.0",

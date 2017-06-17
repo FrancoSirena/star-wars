@@ -28,7 +28,7 @@ export default class Film extends React.Component {
     })
     return(
     <div key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
-        <div className="ui image column" style={{width: '30%'}}>
+        <div className="ui image column " style={{width: '30%'}}>
             <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
         </div>
         <div className="ui column">
