@@ -35,7 +35,6 @@ gulp.task('vendor', function() {
     'bower_components/semantic/dist/js/semantic.js',
     'bower_components/toastr/toastr.js'
   ]).pipe(concat('vendor.js'))
-    .pipe(gulpif(production, uglify({ mangle: false })))
     .pipe(gulp.dest('public/js'));
 });
 
