@@ -92,11 +92,11 @@ app.use(function(req, res) {
     res.sendFile(path.join(__dirname+'/views/index.html'));
 });
 
-mongoose.Promise = require('bluebird');
-mongoose.connect(config.database);
-mongoose.connection.on('error', function() {
-  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
-});
+// mongoose.Promise = require('bluebird');
+// mongoose.connect(config.database);
+// mongoose.connection.on('error', function() {
+//   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+// });
 
 var server = require('http').createServer(app);
 
