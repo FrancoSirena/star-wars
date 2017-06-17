@@ -31,9 +31,9 @@ var dependencies = [
  */
 gulp.task('vendor', function() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/semantic/dist/js/semantic.js',
-    'bower_components/toastr/toastr.js'
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/semantic/dist/js/semantic.min.js',
+    'bower_components/toastr/toastr.min.js'
   ]).pipe(concat('vendor.js'))
     .pipe(gulp.dest('public/js'));
 });
