@@ -1,6 +1,7 @@
 import React from 'react';
 import FilmsListActions  from '../actions/FilmsListActions';
 import FilmsListStore    from '../stores/FilmsListStore';
+import {Card, Icon, Image, Container} from 'semantic-ui-react';
 
 export default class FilmsList extends React.Component {
     constructor(props){
@@ -24,24 +25,21 @@ export default class FilmsList extends React.Component {
                 let arr = item.url.split('/');
                 let index = arr.length;
                 return(
-                <div key={item.episode_id} className="ui card">
-                    
-                    <div className="image">
-                        <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
-                    </div>
-                    <div className="content">
+                <Card key={item.episode_id}>
+                    <Image src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
+                    <Card.Content>
                         <a className="header" href={'/films/'+arr[index-2]}>{item.title}</a>
-                        <div className="meta">
+                        <Card.Meta>
                             <span className="date">{item.release_date}</span>
-                        </div>
-                        <div className="description">
+                        </Card.Meta>
+                        <Card.Description>
                             {item.opening_crawl}
-                        </div>
-                    </div>
-                </div>);
+                        </Card.Description>
+                    </Card.Content>
+                </Card>);
             });
         return (
-        <div className='container filmList'>
+        <Container>
             <div className="ui segment" style={loadingStyle}>
                 <div className="ui active dimmer">
                     <div className="ui small text loader">Loading</div>
@@ -49,10 +47,10 @@ export default class FilmsList extends React.Component {
                 <p></p>
                 <p></p>
             </div>
-            <div className='ui link cards'>
+            <Card.Group>
                 {filmsList}
-            </div>
-        </div>
+            </Card.Group>
+        </Container>
         );
     }
 }
