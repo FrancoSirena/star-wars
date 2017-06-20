@@ -7,10 +7,12 @@ class FilmsListStore{
         this.films = [];
         this.isLoading = true;
     }
+    onLoad(loading) {
+        this.isLoading = loading;
+    }
     onGetAllFilmsSuccess(data) {
         this.films = data;
         this.isLoading = false;
-
     }
     onGetAllFilmsFail(jqXhr) {
         toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);

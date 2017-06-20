@@ -1,8 +1,7 @@
 import React from 'react';
 import FilmStore from '../stores/FilmStore';
 import FilmActions from '../actions/FilmActions';
-import {Accordion, Icon} from 'semantic-ui-react';
-
+import {Accordion, Icon, List} from 'semantic-ui-react';
 export default class Film extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +10,7 @@ export default class Film extends React.Component {
   }
   componentDidMount() {
     FilmStore.listen(this.onChange);
+    FilmActions.load(true);
     FilmActions.getFilmByID(this.props.match.params.id);
   }
   componentWillUnmount() {
@@ -22,10 +22,10 @@ export default class Film extends React.Component {
   render() {
     let item = this.state.film.data;
     let charsList = this.state.film.characters.map((char, idx) =>{
-      return (<p key={"c"+idx}>{char.name}  </p>);
+      return (<List.Item key={"c"+idx}>{char.name}  </List.Item>);
     });
     let planetsList = this.state.film.planets.map((planet, idx) => {
-        return (<p key={"p"+idx}>{planet.name} </p>);
+        return (<List.Item key={"p"+idx}>{planet.name} </List.Item>);
     })
     return(
     <div key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
@@ -42,7 +42,9 @@ export default class Film extends React.Component {
                 <Icon name="users" />Chars
               </Accordion.Title>
               <Accordion.Content>
+                <List>
                   {charsList}
+                </List>
               </Accordion.Content>
             </Accordion>
             <Accordion className="column">
@@ -50,7 +52,9 @@ export default class Film extends React.Component {
                 <Icon name="world" />Planets
               </Accordion.Title>
               <Accordion.Content>
-                {planetsList}
+                <List>
+                  {planetsList}
+                </List>
               </Accordion.Content>                
             </Accordion>
           </div>

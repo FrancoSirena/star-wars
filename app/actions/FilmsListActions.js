@@ -4,7 +4,8 @@ class FilmsListActions {
     constructor() {
         this.generateActions(
             'getAllFilmsSuccess',
-            'getAllFilmsFail'
+            'getAllFilmsFail',
+            'load'
         );
     }
     getAllFilms() {

@@ -4,7 +4,8 @@ class FilmActions {
   constructor() {
     this.generateActions (
       'getFilmByIDSuccess',
-      'getFilmByIDFail'
+      'getFilmByIDFail',
+      'load'
     )
   }
   getFilmByID(id) {

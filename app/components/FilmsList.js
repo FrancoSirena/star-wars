@@ -3,6 +3,7 @@ import FilmsListActions  from '../actions/FilmsListActions';
 import FilmsListStore    from '../stores/FilmsListStore';
 import {Card, Icon, Image, Container} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import AppActions from '../actions/AppActions';
 
 export default class FilmsList extends React.Component {
     constructor(props){
@@ -12,6 +13,7 @@ export default class FilmsList extends React.Component {
     }
     componentDidMount() {
         FilmsListStore.listen(this.onChange);
+        FilmsListActions.load(true);
         FilmsListActions.getAllFilms();
     }
     componentWillUnmount() {
@@ -38,13 +40,6 @@ export default class FilmsList extends React.Component {
             });
         return (
         <Container>
-            <div className="ui segment" style={loadingStyle}>
-                <div className="ui active dimmer">
-                    <div className="ui small text loader">Loading</div>
-                </div>
-                <p></p>
-                <p></p>
-            </div>
             <Card.Group itemsPerRow={5}>
                 {filmsList}
             </Card.Group>
