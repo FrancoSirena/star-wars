@@ -24,9 +24,16 @@ class App extends React.Component {
         <Menu>
             <Menu.Item name='films'
                         active={this.state.activeItem === 'films'}
-                        onClick={this.handleItemClick.bind(this)}> <i className="small film icon"></i> Films</Menu.Item>
+                        as={Link}
+                        to="/films"
+                        onClick={this.handleItemClick.bind(this)}>
+              <i className="small film icon"></i> Films
+            </Menu.Item>
+            
             <Menu.Item name='planets'
                         active={this.state.activeItem === 'planets'}
+                        as={Link}
+                        to="/planets"
                         onClick={this.handleItemClick.bind(this)}> <i className="small world icon"></i> Planets</Menu.Item>
         </Menu>
         <div className="body">

@@ -2,6 +2,7 @@ import React from 'react';
 import FilmsListActions  from '../actions/FilmsListActions';
 import FilmsListStore    from '../stores/FilmsListStore';
 import {Card, Icon, Image, Container} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 export default class FilmsList extends React.Component {
     constructor(props){
@@ -28,13 +29,10 @@ export default class FilmsList extends React.Component {
                 <Card key={item.episode_id}>
                     <Image src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
                     <Card.Content>
-                        <a className="header" href={'/films/'+arr[index-2]}>{item.title}</a>
+                        <Link to={'/films/'+arr[index-2]} className="header">{item.title}</Link>
                         <Card.Meta>
                             <span className="date">{item.release_date}</span>
                         </Card.Meta>
-                        <Card.Description>
-                            {item.opening_crawl}
-                        </Card.Description>
                     </Card.Content>
                 </Card>);
             });
@@ -47,7 +45,7 @@ export default class FilmsList extends React.Component {
                 <p></p>
                 <p></p>
             </div>
-            <Card.Group>
+            <Card.Group itemsPerRow={5}>
                 {filmsList}
             </Card.Group>
         </Container>
