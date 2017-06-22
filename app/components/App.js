@@ -63,7 +63,7 @@ export default class App extends React.Component {
             <Route exact path="/" component={FilmsList}/>
             <Route exact path="/Films" component={FilmsList}/>
             <Route path="/films/:id" component={Film} />
-            <Segment>
+            <Segment disabled={!this.state.isLoading}> 
               <Dimmer active inverted>
                 <Loader style={{position: 'fixed', left: "50%", top: "50%"}} disabled={!this.state.isLoading} size="medium" >Loading</Loader>
               </Dimmer>

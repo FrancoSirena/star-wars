@@ -17,7 +17,8 @@ export default class Film extends React.Component {
     FilmStore.unlisten(this.onChage);
   }
   onChange(state) {
-    this.setState(state);
+    if (this.refs.myDivRef)
+      this.setState(state); 
   }
   render() {
     let item = this.state.film.data;
@@ -28,7 +29,7 @@ export default class Film extends React.Component {
         return (<List.Item key={"p"+idx}>{planet.name} </List.Item>);
     })
     return(
-    <div key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
+    <div ref="myDivRef" key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
       <div className="ui image column " style={{width: '30%'}}>
         <img src={"/imgs/film_cover_"+item.episode_id+".jpg"} />
       </div>
