@@ -31,6 +31,13 @@ app.get('/api/films', function(req, res, next) {
         });
 });
 
+app.get('/api/planets/', function (req, res, next) {
+    axios.get(urlSwapi.concat('/api/planets/' + id))
+        .then(function(data) {
+            res.send(data.data);
+        })
+})
+
 app.post('/api/film/', function(req, res, next) {
     var id = req.body.id;
     var returnData = {data: {}, planets: [], characters: []};

@@ -17,14 +17,15 @@
 .body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-image: linear-gradient(@base, darkblue);
-    @media screen and (max-device-width : 320px)
-    {
-        font-size:6px;
-    }
-    @media screen and (max-device-width : 1204px)
-    {
-      font-size:12px;
-    }
+  @media screen and (max-device-width : 320px)
+  {
+      font-size:6px;
+  }
+  @media screen and (max-device-width : 1204px)
+  {
+    font-size:12px;
+  }
+
 }       
 
 .ui.accordion .title {
@@ -32,3 +33,18 @@
       color: blue;
     }
   }
+
+.ui.list {
+  a.item {
+    color: black;
+    &:hover{
+      color:white;
+    }
+  }
+}
+
+.ui.column{
+  span.header{
+    font-size: 1.2em;
+  }
+}

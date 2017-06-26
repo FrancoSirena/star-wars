@@ -69,6 +69,9 @@ export default class App extends React.Component {
               </Dimmer>
             </Segment>
         </div>
+        <footer>
+            Franco Sirena
+        </footer>
       </div>
     </Router>   
     )

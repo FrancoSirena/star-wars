@@ -2,6 +2,9 @@ import React from 'react';
 import FilmStore from '../stores/FilmStore';
 import FilmActions from '../actions/FilmActions';
 import {Accordion, Icon, List} from 'semantic-ui-react';
+import Planet from './Planet';
+import {Link} from 'react-router-dom';
+
 export default class Film extends React.Component {
   constructor(props) {
     super(props);
@@ -20,13 +23,16 @@ export default class Film extends React.Component {
     if (this.refs.myDivRef)
       this.setState(state); 
   }
+  onClickPlanet
   render() {
     let item = this.state.film.data;
     let charsList = this.state.film.characters.map((char, idx) =>{
-      return (<List.Item key={"c"+idx}>{char.name}  </List.Item>);
+      let arr = char.url.split('/');
+      let index = arr.length;
+      return (<List.Item as={Link} to={"/Characters/"+arr[index-2]} key={"c"+idx}>{char.name}  </List.Item>);
     });
     let planetsList = this.state.film.planets.map((planet, idx) => {
-        return (<List.Item key={"p"+idx}>{planet.name} </List.Item>);
+      return (<Planet key={"p"+idx} planet={planet}> </Planet>  );
     })
     return(
     <div ref="myDivRef" key={item.episode_id} className="ui two column very relaxed grid" style={{height: '70%'}}>
