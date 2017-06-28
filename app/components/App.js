@@ -8,6 +8,7 @@ import FilmsList from './FilmsList';
 import Film from './Film';
 import FilmsListStore from '../stores/FilmsListStore';
 import FilmStore from '../stores/FilmStore';
+import PlanetStore from '../stores/PlanetStore';
 
 import {Menu} from 'semantic-ui-react';
 
@@ -20,22 +21,28 @@ export default class App extends React.Component {
     this.state = AppStore.getState();
     this.onChange = this.onChange.bind(this);
     this.onLoading = this.onLoading.bind(this);
+    this.onChangeTerrain = this.onChangeTerrain.bind(this);
   }
   componentDidMount() {
     AppStore.listen(this.onChange);
     FilmsListStore.listen(this.onLoading);
     FilmStore.listen(this.onLoading);
+    PlanetStore.listen(this.onChangeTerrain);
   }
   componentWillUnmount() {
     AppStore.unlisten(this.onChange);
     FilmsListStore.unlisten(this.onLoading);
     FilmStore.unlisten(this.onLoading);
+    PlanetStore.unlisten(this.onChangeTerrain);
   }
   onLoading(state) {
     this.setState({isLoading: state.isLoading});
   }
   onChange(state) {
     this.setState(state);
+  }
+  onChangeTerrain(state) {
+    this.refs.main.style.backgroundImage = 'linear-gradient('+state.backgroundColor+','+state.backgroundColorGradient+')';
   }
   handleItemClick (e, {name}) {
     AppActions.activateItem(name);
@@ -59,7 +66,7 @@ export default class App extends React.Component {
                         to="/planets"
                         onClick={this.handleItemClick.bind(this)}> <i className="small world icon"></i> Planets</Menu.Item>
         </Menu>
-        <div className="body">
+        <div className="body" ref="main">
             <Route exact path="/" component={FilmsList}/>
             <Route exact path="/Films" component={FilmsList}/>
             <Route path="/films/:id" component={Film} />

@@ -19,12 +19,12 @@ export default class Planet extends React.Component {
     this.setState(state);
   }
   onClick(planet) {
-    
+    PlanetActions.changeBackground(planet);
   }
   render () {
     let planet = this.props.planet;
     return (
-      <List.Item onClick={this.onClick.bind(planet.terrain)} key={planet.name}>{planet.name} </List.Item>
+      <List.Item onClick={this.onClick.bind(this, planet)} ref="planet" className="mLink" key={planet.name}>{planet.name} </List.Item>
     )
   }
 }
